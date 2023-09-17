@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createContact, fetchContacts, deleteContact } from './operations';
 
-const initialContacts = { items: [], isLoading: false, error: null };
+const initialContacts = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
 
 const rejectFunc = (state, action) => {
   return {
