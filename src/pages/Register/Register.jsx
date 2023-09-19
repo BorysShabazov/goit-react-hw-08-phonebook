@@ -47,6 +47,7 @@ const Register = () => {
             <FormLabel fontSize={'20'} fontWeight={'500'}>
               Name:
               <Input
+                id="1"
                 fontSize={'20'}
                 fontWeight={'500'}
                 name="name"
@@ -56,6 +57,7 @@ const Register = () => {
             <FormLabel fontSize={'20'} fontWeight={'500'}>
               Email:{' '}
               <Input
+                id="2"
                 fontSize={'20'}
                 fontWeight={'500'}
                 name="email"
@@ -65,6 +67,7 @@ const Register = () => {
             <FormLabel fontSize={'20'} fontWeight={'500'}>
               Password:
               <Input
+                id="3"
                 fontSize={'20'}
                 fontWeight={'500'}
                 name="password"
@@ -73,6 +76,7 @@ const Register = () => {
             </FormLabel>
             <Box display={'flex'} gap={'4'}>
               <Button
+                type="submit"
                 bgColor="transparent"
                 border="1px"
                 borderColor="#000000"
