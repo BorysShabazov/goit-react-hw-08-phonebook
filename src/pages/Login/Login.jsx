@@ -72,8 +72,9 @@ const Login = () => {
               color="#1498fd"
               fontSize={'20'}
               _hover={{ bgColor: '#d6d5d4' }}
+              textDecoration={'underline'}
             >
-              Login
+              Sign in
             </Button>
             <Button
               bgColor="transparent"
@@ -84,7 +85,7 @@ const Login = () => {
               fontSize={'20'}
               _hover={{ bgColor: '#d6d5d4' }}
             >
-              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/register">Sign up</NavLink>
             </Button>
           </Box>
         </form>

@@ -76,6 +76,17 @@ const Register = () => {
             </FormLabel>
             <Box display={'flex'} gap={'4'}>
               <Button
+                bgColor="transparent"
+                border="1px"
+                borderColor="#000000"
+                fontWeight="700"
+                color="#1498fd"
+                fontSize={'20'}
+                _hover={{ bgColor: '#d6d5d4' }}
+              >
+                <NavLink to="/login">Sign in</NavLink>
+              </Button>
+              <Button
                 type="submit"
                 bgColor="transparent"
                 border="1px"
@@ -84,19 +95,9 @@ const Register = () => {
                 color="#1498fd"
                 fontSize={'20'}
                 _hover={{ bgColor: '#d6d5d4' }}
+                textDecoration={'underline'}
               >
-                Register
-              </Button>
-              <Button
-                bgColor="transparent"
-                border="1px"
-                borderColor="#000000"
-                fontWeight="700"
-                color="#1498fd"
-                fontSize={'20'}
-                _hover={{ bgColor: '#d6d5d4' }}
-              >
-                <NavLink to="/login">Login</NavLink>
+                Sign up
               </Button>
             </Box>
           </FormControl>
