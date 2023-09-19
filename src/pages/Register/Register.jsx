@@ -1,3 +1,11 @@
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Text,
+} from '@chakra-ui/react';
 import { createUser } from 'components/redux/operations';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -27,23 +35,69 @@ const Register = () => {
 
   return (
     <>
-      <div>PhoneBook</div>
-      <NavLink to="/login">Login</NavLink>
-      <form action="submit" onSubmit={handleRegister}>
-        <label>
-          Name:
-          <input name="name" type="text" />
-        </label>
-        <label>
-          Email:
-          <input name="email" type="email" />
-        </label>
-        <label>
-          Password:
-          <input name="password" type="password" />
-        </label>
-        <button>Register</button>
-      </form>
+      <Box p="2" border="1px" bgColor={'#d6d5d4'}>
+        <Text fontSize="28" fontWeight="700" color="#1498fd">
+          PhoneBook
+        </Text>
+      </Box>
+
+      <Box p={'16px'}>
+        <form action="submit" onSubmit={handleRegister}>
+          <FormControl w={'400px'}>
+            <FormLabel fontSize={'20'} fontWeight={'500'}>
+              Name:
+              <Input
+                fontSize={'20'}
+                fontWeight={'500'}
+                name="name"
+                type="text"
+              />
+            </FormLabel>
+            <FormLabel fontSize={'20'} fontWeight={'500'}>
+              Email:{' '}
+              <Input
+                fontSize={'20'}
+                fontWeight={'500'}
+                name="email"
+                type="email"
+              />
+            </FormLabel>
+            <FormLabel fontSize={'20'} fontWeight={'500'}>
+              Password:
+              <Input
+                fontSize={'20'}
+                fontWeight={'500'}
+                name="password"
+                type="password"
+              />
+            </FormLabel>
+            <Box display={'flex'} gap={'4'}>
+              <Button
+                bgColor="transparent"
+                border="1px"
+                borderColor="#000000"
+                fontWeight="700"
+                color="#1498fd"
+                fontSize={'20'}
+                _hover={{ bgColor: '#d6d5d4' }}
+              >
+                Register
+              </Button>
+              <Button
+                bgColor="transparent"
+                border="1px"
+                borderColor="#000000"
+                fontWeight="700"
+                color="#1498fd"
+                fontSize={'20'}
+                _hover={{ bgColor: '#d6d5d4' }}
+              >
+                <NavLink to="/login">Login</NavLink>
+              </Button>
+            </Box>
+          </FormControl>
+        </form>
+      </Box>
     </>
   );
 };

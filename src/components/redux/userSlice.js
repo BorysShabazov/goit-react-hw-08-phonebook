@@ -26,9 +26,9 @@ const userSlice = createSlice({
     // fetch
 
     // builder.addCase(fetchUser.pending, pendingFunc);
-    // builder.addCase(fetchUser.fulfilled, (_, action) => {
+    // builder.addCase(fetchUser.fulfilled, (state, action) => {
     //   return {
-    //     usersList: [...action.payload],
+    //     user: { token: state.user.token, user: action.payload },
     //     isLoading: false,
     //     error: null,
     //   };

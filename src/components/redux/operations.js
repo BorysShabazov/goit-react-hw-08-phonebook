@@ -3,6 +3,14 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
+export const setToken = token => {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+};
+
+const delToken = () => {
+  axios.defaults.headers.common['Authorization'] = '';
+};
+
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
 
@@ -40,24 +48,24 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-export const fetchUser = createAsyncThunk(
-  'user/fetchCurrent',
-
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get('/users/current');
-      return response.data;
-    } catch (evt) {
-      return thunkAPI.rejectWithValue(evt.message);
-    }
-  }
-);
+// export const fetchUser = createAsyncThunk(
+//   'user/fetchCurrent',
+//   async (_, thunkAPI) => {
+//     try {
+//       const { data } = await axios.get('/users/current');
+//       return data;
+//     } catch (evt) {
+//       return thunkAPI.rejectWithValue(evt.message);
+//     }
+//   }
+// );
 
 export const createUser = createAsyncThunk(
   'user/createUser',
   async (arg, thunkAPI) => {
     try {
       const { data } = await axios.post('/users/signup', arg);
+      setToken(data.token);
       return data;
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);
@@ -70,6 +78,7 @@ export const loginUser = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       const { data } = await axios.post(`/users/login`, arg);
+      setToken(data.token);
       return data;
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);
@@ -82,6 +91,7 @@ export const logoutUser = createAsyncThunk(
   async (arg, thunkAPI) => {
     try {
       axios.post(`/users/logout`, arg);
+      delToken();
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);
     }
