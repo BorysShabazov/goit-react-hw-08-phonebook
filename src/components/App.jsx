@@ -2,15 +2,18 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import { useSelector } from 'react-redux';
-import { getUser } from './redux/selectos';
+import { getModalState, getUser } from './redux/selectos';
 import Contacts from 'pages/Contacts';
 import { ChakraProvider } from '@chakra-ui/react';
+import { ChangeModal } from './ChangeModal/ChangeModal';
 
 const App = () => {
   const { user } = useSelector(getUser);
+  const modal = useSelector(getModalState);
 
   return (
     <ChakraProvider>
+      {modal && <ChangeModal />}
       <div>
         <Routes>
           <Route

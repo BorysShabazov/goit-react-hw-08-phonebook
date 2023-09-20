@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { Box, Button, List, ListItem, Text } from '@chakra-ui/react';
 import { Filter } from 'components/Filter/Filter';
 import { PhoneBook } from 'components/PhoneBook/PhoneBook';
+import { openModal } from 'components/redux/filterSlice';
 
 const Contacts = ({ children }) => {
   const { user } = useSelector(getUser);
@@ -33,8 +34,13 @@ const Contacts = ({ children }) => {
   }
 
   const handlDeleteContact = evt => {
-    if (evt.target.tagName === 'BUTTON') {
+    if (evt.target.name === 'delete') {
       dispatch(deleteContact(evt.currentTarget.id));
+    }
+    if (evt.target.name === 'change') {
+      const user = contacts.find(el => el.id === evt.currentTarget.id);
+
+      dispatch(openModal(user));
     }
   };
 
@@ -89,18 +95,34 @@ const Contacts = ({ children }) => {
                   justifyContent={'space-between'}
                 >
                   {name}: {number}
-                  <Button
-                    bgColor="transparent"
-                    border="1px"
-                    borderColor="#000000"
-                    fontWeight="700"
-                    color="#1498fd"
-                    _hover={{ bgColor: '#d6d5d4', color: 'red' }}
-                    fontSize={'20'}
-                    type="button"
-                  >
-                    Delete
-                  </Button>
+                  <Box display={'flex'} gap={'4'}>
+                    <Button
+                      name="change"
+                      bgColor="transparent"
+                      border="1px"
+                      borderColor="#000000"
+                      fontWeight="700"
+                      color="#1498fd"
+                      _hover={{ bgColor: '#d6d5d4', color: '#1498fd' }}
+                      fontSize={'20'}
+                      type="button"
+                    >
+                      Change
+                    </Button>
+                    <Button
+                      name="delete"
+                      bgColor="transparent"
+                      border="1px"
+                      borderColor="#000000"
+                      fontWeight="700"
+                      color="red"
+                      _hover={{ bgColor: 'red', color: '#1498fd' }}
+                      fontSize={'20'}
+                      type="button"
+                    >
+                      Delete
+                    </Button>
+                  </Box>
                 </ListItem>
               );
             })}
