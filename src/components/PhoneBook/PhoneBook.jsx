@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { createContact } from 'components/redux/operations';
-import { nanoid } from '@reduxjs/toolkit';
+import { createContact, fetchContacts } from 'components/redux/operations';
 import { getContacts } from 'components/redux/selectos';
 import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 
@@ -8,7 +7,7 @@ export const PhoneBook = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
 
     const inputName = event.currentTarget.name.value.trim();
@@ -21,12 +20,11 @@ export const PhoneBook = () => {
       return;
     }
 
-    dispatch(
-      createContact({ name: inputName, number: inputNumber, id: nanoid() })
-    );
+    await dispatch(createContact({ name: inputName, number: inputNumber }));
+    dispatch(fetchContacts());
 
-    event.currentTarget.number.value = '';
-    event.currentTarget.name.value = '';
+    event.target.number.value = '';
+    event.target.name.value = '';
   };
 
   return (

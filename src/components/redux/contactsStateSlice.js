@@ -44,7 +44,7 @@ const contactsStateSlice = createSlice({
     builder.addCase(createContact.pending, pendingFunc);
     builder.addCase(createContact.fulfilled, (state, action) => {
       return {
-        items: [...state.items, action.payload],
+        items: state.items,
         isLoading: false,
         error: null,
       };
